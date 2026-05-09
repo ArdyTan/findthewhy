@@ -85,6 +85,9 @@ src/
     ui/
       Button.jsx
       Primitives.jsx    # Card, Input, Textarea, Tag, Eyebrow, etc.
+functions/
+  api/anthropic/v1/
+    messages.js         # Cloudflare Pages Function — production API proxy
 ```
 
 ---
@@ -109,15 +112,39 @@ Change `DEFAULT_MODEL` in `src/lib/ai.js`.
 
 ---
 
-## Deploying
+## Deploying to Cloudflare Pages
 
-This setup is **local-first by design**. The Vite dev proxy that injects your API key only runs in development. To deploy publicly you'd need to:
+This project is set up to deploy on **Cloudflare Pages** with Functions. The `functions/api/anthropic/v1/messages.js` file is automatically discovered by Cloudflare and acts as the production replacement for the Vite dev proxy — the frontend code in `src/lib/ai.js` works identically in dev and production.
 
-1. Replace the proxy with a serverless function (e.g. Vercel API route or Netlify function) that reads `ANTHROPIC_API_KEY` from environment variables and forwards requests to `https://api.anthropic.com/v1/messages`.
-2. Update `API_URL` in `src/lib/ai.js` to point to your serverless endpoint.
-3. Add basic rate-limiting in the function, since the endpoint is now public.
+### Step-by-step
 
-For now, just run it locally — that's the intended use.
+1. **Push to GitHub** — commit your code (make sure `.env.local` is not committed; `.gitignore` already excludes it).
+
+2. **Connect to Cloudflare Pages**:
+   - Go to [dash.cloudflare.com](https://dash.cloudflare.com/) → Workers & Pages → Create → Pages → Connect to Git
+   - Select your repo
+   - Build command: `npm run build` (or `bun run build`)
+   - Output directory: `dist`
+
+3. **Add the API key as a secret** (this is the most important step):
+   - In your Pages project: Settings → Environment variables → Production
+   - Add variable: name `ANTHROPIC_API_KEY`, value `sk-ant-...`, **type: Secret** (encrypted)
+   - Add the same to Preview environment if you want preview deploys to work
+
+4. **Trigger a redeploy** — push a commit, or hit "Retry deployment" in Cloudflare.
+
+The Function will pick up `env.ANTHROPIC_API_KEY` server-side. The key never reaches the browser.
+
+### About the Vite version
+
+This project uses Vite 6 (`^6.0.7`). Cloudflare's Wrangler 4.x requires Vite 6+ for automatic configuration — Vite 5 will fail with `"The version of Vite ... cannot be automatically configured"`.
+
+### Deploying elsewhere (Vercel, Netlify)
+
+Replace the Cloudflare Function with the equivalent serverless function for your platform:
+
+- **Vercel**: Move the file to `api/anthropic/v1/messages.js` and adapt to the Vercel handler signature (`req, res`). Set `ANTHROPIC_API_KEY` in Project Settings → Environment Variables.
+- **Netlify**: Use Netlify Functions in `netlify/functions/anthropic.js` and add a redirect rule so `/api/anthropic/v1/messages` → `/.netlify/functions/anthropic`.
 
 ---
 
