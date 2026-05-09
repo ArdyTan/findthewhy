@@ -370,8 +370,7 @@ function renderQuestion() {
 
   // question
   $("#questionTitle").textContent = q.title;
-  $("#questionHint").textContent =
-    q.mode === "multi" ? "Select all that apply" : "Choose your top one";
+  $("#questionHint").textContent = "Choose your top one";
 
   // options
   const list = $("#optionsList");
@@ -442,16 +441,9 @@ function renderChips() {
 
 function toggleOption(letter) {
   const i = state.current;
-  const q = QUESTIONS[i];
   const arr = state.answers[i];
-  const idx = arr.indexOf(letter);
-
-  if (q.mode === "single") {
-    state.answers[i] = idx === -1 ? [letter] : [];
-  } else {
-    if (idx === -1) arr.push(letter);
-    else arr.splice(idx, 1);
-  }
+  const isSelected = arr[0] === letter;
+  state.answers[i] = isSelected ? [] : [letter];
   renderQuestion();
 }
 
@@ -476,30 +468,36 @@ function prev() {
 /* ============================================================
    Scoring
    ============================================================ */
+const LETTER_TO_CIRCLE = {
+  A: "passion",
+  B: "skills",
+  C: "mission",
+  D: "vocation",
+};
+
 function computeResult() {
-  const counts = { passion: 0, skills: 0, mission: 0, vocation: 0 };
-  const maxes  = { passion: 0, skills: 0, mission: 0, vocation: 0 };
+  const votes = { passion: 0, skills: 0, mission: 0, vocation: 0 };
 
   QUESTIONS.forEach((q, i) => {
-    const sel = state.answers[i];
-    // each selected option = 1 engagement point; max possible per question:
-    // - single: 1 (you can pick one)
-    // - multi : number of options (5)
-    maxes[q.circle] += q.mode === "single" ? 1 : q.options.length;
-    counts[q.circle] += sel.length;
+    const letter = state.answers[i][0];
+    if (!letter) return;
+    const circle = LETTER_TO_CIRCLE[letter] || q.circle;
+    votes[circle] += 1;
   });
 
-  // Convert to percent of "engagement" within each circle
+  const total = Object.values(votes).reduce((a, b) => a + b, 0) || 1;
   const pct = {};
-  Object.keys(counts).forEach((k) => {
-    pct[k] = maxes[k] === 0 ? 0 : Math.round((counts[k] / maxes[k]) * 100);
+  Object.keys(votes).forEach((k) => {
+    pct[k] = Math.round((votes[k] / total) * 100);
   });
 
-  // Determine dominant circle (highest %)
   let dominant = "skills";
   let best = -1;
-  Object.entries(pct).forEach(([k, v]) => {
-    if (v > best) { best = v; dominant = k; }
+  Object.entries(votes).forEach(([k, v]) => {
+    if (v > best) {
+      best = v;
+      dominant = k;
+    }
   });
 
   return { pct, dominant };

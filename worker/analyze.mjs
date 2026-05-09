@@ -30,9 +30,7 @@ function buildUserMessage(payload) {
 
   answers.forEach((q, i) => {
     const lines = [];
-    lines.push(
-      `Q${i + 1} (${q.mode === "multi" ? "select all" : "top one"}): ${q.title}`
-    );
+    lines.push(`Q${i + 1}: ${q.title}`);
     if (q.selected.length === 0) {
       lines.push("  → (no answer selected)");
     } else {
