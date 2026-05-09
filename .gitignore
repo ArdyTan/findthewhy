@@ -17,3 +17,10 @@ node_modules/
 
 # Source assets (not part of the deployed app)
 *.pdf
+
+# Secrets & local env (never commit)
+.dev.vars
+.env
+.env.local
+.wrangler/
+dist/
