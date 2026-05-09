@@ -1,5 +1,5 @@
 /* ============================================================
-   IKIGAI � App logic
+   IKIGAI — App logic
    - Screen flow: splash -> welcome -> form -> result
    - 20 questions from the Ikigai Career Questionnaire PDF
    - Each question is mapped to a circle: passion / skills / mission / vocation
@@ -37,7 +37,7 @@ const QUESTIONS = [
     circle: "passion",
     mode: "multi",
     title:
-      "What kind of content do you consume on your own time � without being asked?",
+      "What kind of content do you consume on your own time — without being asked?",
     options: [
       "Technology, startups, or product design",
       "Psychology, personal development, or human behavior",
@@ -51,11 +51,11 @@ const QUESTIONS = [
     mode: "single",
     title: "What feeling do you most want to experience at work?",
     options: [
-      "Creative expression � I made this",
-      "Deep focus � I was completely absorbed",
-      "Connection � I really helped someone today",
-      "Growth � I learned something that challenged me",
-      "Impact � what I did actually mattered",
+      "Creative expression — I made this",
+      "Deep focus — I was completely absorbed",
+      "Connection — I really helped someone today",
+      "Growth — I learned something that challenged me",
+      "Impact — what I did actually mattered",
     ],
   },
   {
@@ -80,7 +80,7 @@ const QUESTIONS = [
       "Advice on decisions, problems, or how to think about something",
       "Technical or specialized help (code, design, analysis, etc.)",
       "Emotional support, listening, or conflict resolution",
-      "Creative input � ideas, writing, or visual work",
+      "Creative input — ideas, writing, or visual work",
       "Getting things organized or executed efficiently",
     ],
   },
@@ -89,10 +89,10 @@ const QUESTIONS = [
     mode: "multi",
     title: "Which of these skills feel most natural to you?",
     options: [
-      "Communicating clearly � speaking, writing, or presenting",
+      "Communicating clearly — speaking, writing, or presenting",
       "Seeing patterns or making sense of complex information",
       "Building rapport and trust with people quickly",
-      "Turning ideas into tangible things � prototyping, building, shipping",
+      "Turning ideas into tangible things — prototyping, building, shipping",
       "Leading, motivating, or pulling a team toward a goal",
     ],
   },
@@ -113,11 +113,11 @@ const QUESTIONS = [
     mode: "single",
     title: "In a team project, what role do you naturally fall into?",
     options: [
-      "The visionary � generating ideas and direction",
-      "The executor � turning plans into action",
-      "The connector � keeping people aligned and motivated",
-      "The analyst � questioning assumptions and stress-testing plans",
-      "The specialist � going deep on a specific part of the work",
+      "The visionary — generating ideas and direction",
+      "The executor — turning plans into action",
+      "The connector — keeping people aligned and motivated",
+      "The analyst — questioning assumptions and stress-testing plans",
+      "The specialist — going deep on a specific part of the work",
     ],
   },
   {
@@ -126,8 +126,8 @@ const QUESTIONS = [
     title: "Where do you learn fastest compared to most people around you?",
     options: [
       "Technology, software, or digital tools",
-      "People skills � reading rooms, negotiation, influence",
-      "Creative disciplines � design, writing, storytelling",
+      "People skills — reading rooms, negotiation, influence",
+      "Creative disciplines — design, writing, storytelling",
       "Business and systems thinking",
       "Science, research, or data",
     ],
@@ -139,10 +139,10 @@ const QUESTIONS = [
     mode: "multi",
     title: "What problem in the world makes you most angry or frustrated?",
     options: [
-      "Inequality � in education, health, wealth, or opportunity",
+      "Inequality — in education, health, wealth, or opportunity",
       "Environmental destruction or climate inaction",
       "Mental health crisis and lack of emotional support",
-      "Broken or outdated systems � healthcare, education, government",
+      "Broken or outdated systems — healthcare, education, government",
       "People unable to reach their potential due to lack of access",
     ],
   },
@@ -155,7 +155,7 @@ const QUESTIONS = [
       "People in underserved or marginalized communities",
       "Professionals or teams in a specific industry",
       "Individuals navigating a major life transition",
-      "Society as a whole � through better systems or policies",
+      "Society as a whole — through better systems or policies",
     ],
   },
   {
@@ -176,8 +176,8 @@ const QUESTIONS = [
     mode: "single",
     title: "What kind of impact would make you feel your career was worth it?",
     options: [
-      "Directly improving lives � I can see the people I helped",
-      "Building something that outlasts me � a product, org, or idea",
+      "Directly improving lives — I can see the people I helped",
+      "Building something that outlasts me — a product, org, or idea",
       "Shifting how an industry or system works at scale",
       "Inspiring or enabling others to reach their own potential",
       "Contributing knowledge or creativity that moves the field forward",
@@ -186,7 +186,7 @@ const QUESTIONS = [
   {
     circle: "mission",
     mode: "multi",
-    title: "What cause do you find yourself defending � even when unprompted?",
+    title: "What cause do you find yourself defending — even when unprompted?",
     options: [
       "Women's rights, gender equity, or inclusion",
       "Animal welfare or environmental protection",
@@ -201,13 +201,13 @@ const QUESTIONS = [
     circle: "vocation",
     mode: "multi",
     title:
-      "What are you currently being paid to do � or have been paid for in the past?",
+      "What are you currently being paid to do — or have been paid for in the past?",
     options: [
-      "Technical skills � engineering, coding, data, design",
-      "Business skills � sales, marketing, operations, finance",
-      "People skills � HR, coaching, facilitation, customer success",
-      "Creative skills � writing, design, video, content",
-      "Domain expertise � law, medicine, education, research",
+      "Technical skills — engineering, coding, data, design",
+      "Business skills — sales, marketing, operations, finance",
+      "People skills — HR, coaching, facilitation, customer success",
+      "Creative skills — writing, design, video, content",
+      "Domain expertise — law, medicine, education, research",
     ],
   },
   {
@@ -215,11 +215,11 @@ const QUESTIONS = [
     mode: "single",
     title: "Which best describes your current career stage?",
     options: [
-      "Student or early career � still exploring what I want to do",
-      "Mid-career � established in a field but considering a pivot",
-      "Senior � experienced but seeking more meaning or purpose",
-      "Entrepreneur or freelancer � building on my own terms",
-      "Career break or transition � restarting from a new chapter",
+      "Student or early career — still exploring what I want to do",
+      "Mid-career — established in a field but considering a pivot",
+      "Senior — experienced but seeking more meaning or purpose",
+      "Entrepreneur or freelancer — building on my own terms",
+      "Career break or transition — restarting from a new chapter",
     ],
   },
   {
@@ -240,11 +240,11 @@ const QUESTIONS = [
     mode: "single",
     title: "How comfortable are you with financial risk in your career path?",
     options: [
-      "I need stable income � security comes first for me right now",
+      "I need stable income — security comes first for me right now",
       "I'm okay with some risk if the upside is meaningful",
       "I'm willing to earn less short-term for a mission I believe in",
-      "I'm ready to take a big leap � all in on building something new",
-      "I want to monetize what I already love doing � figuring out how",
+      "I'm ready to take a big leap — all in on building something new",
+      "I want to monetize what I already love doing — figuring out how",
     ],
   },
   {
@@ -253,9 +253,9 @@ const QUESTIONS = [
     title: "What type of work arrangement feels most sustainable for you?",
     options: [
       "Full-time employment with benefits and structure",
-      "Freelance or consulting � flexible and project-based",
+      "Freelance or consulting — flexible and project-based",
       "Building my own startup or business",
-      "Portfolio career � multiple income streams from different work",
+      "Portfolio career — multiple income streams from different work",
       "Mission-driven org (NGO, social enterprise, government)",
     ],
   },
@@ -269,7 +269,7 @@ const CIRCLE_LABELS = {
 };
 
 /* ------------------------------------------------------------
-   Archetypes � derived from the dominant circle / overlap
+   Archetypes — derived from the dominant circle / overlap
    ------------------------------------------------------------ */
 const ARCHETYPES = {
   passion: {
@@ -280,29 +280,29 @@ const ARCHETYPES = {
     long:
       "Visionaries are great at seeing what could be. You're more likely to thrive when you have room to explore, create, and follow ideas wherever they lead.",
     long2:
-      "Your sweet spot lives at the intersection of passion and meaning � careers where self-expression and purpose are non-negotiable.",
+      "Your sweet spot lives at the intersection of passion and meaning — careers where self-expression and purpose are non-negotiable.",
     overlaps: ["Passion + Mission", "Passion + Skills"],
   },
   skills: {
     name: "The Builder",
     glyph: "B",
     blurb:
-      "You're driven by mastery. You shine when you can apply real skill to real problems � the kind of person every team needs when ideas have to become reality.",
+      "You're driven by mastery. You shine when you can apply real skill to real problems — the kind of person every team needs when ideas have to become reality.",
     long:
       "Builders combine deep focus with hands-on execution. You learn fast, ship fast, and tend to be the person others trust to actually deliver.",
     long2:
-      "Your sweet spot lives where skills meet vocation � careers where craft is rewarded and your expertise compounds over time.",
+      "Your sweet spot lives where skills meet vocation — careers where craft is rewarded and your expertise compounds over time.",
     overlaps: ["Skills + Vocation", "Skills + Passion"],
   },
   mission: {
     name: "The Changemaker",
     glyph: "M",
     blurb:
-      "You're driven by impact. What the world needs isn't an abstract question for you � it's the lens you naturally use when choosing what to do.",
+      "You're driven by impact. What the world needs isn't an abstract question for you — it's the lens you naturally use when choosing what to do.",
     long:
       "Changemakers care about systems, equity, and the people behind the numbers. You're often happiest when your work directly improves lives.",
     long2:
-      "Your sweet spot lives at the intersection of mission and vocation � work that pays the bills and leaves the world better than you found it.",
+      "Your sweet spot lives at the intersection of mission and vocation — work that pays the bills and leaves the world better than you found it.",
     overlaps: ["Mission + Vocation", "Mission + Passion"],
   },
   vocation: {
@@ -311,9 +311,9 @@ const ARCHETYPES = {
     blurb:
       "You're driven by sustainable craft. You think clearly about how skill turns into value, and you're not afraid to design a career deliberately.",
     long:
-      "Strategists are pragmatic. You're great at spotting where your skills meet a real market, and at building careers that compound � not just jobs.",
+      "Strategists are pragmatic. You're great at spotting where your skills meet a real market, and at building careers that compound — not just jobs.",
     long2:
-      "Your sweet spot lives where vocation meets skills and passion � careers where you get paid well to do work you respect.",
+      "Your sweet spot lives where vocation meets skills and passion — careers where you get paid well to do work you respect.",
     overlaps: ["Vocation + Skills", "Vocation + Passion"],
   },
 };
@@ -427,7 +427,7 @@ function renderChips() {
   if (sel.length === 0) {
     const empty = document.createElement("span");
     empty.className = "chip-empty";
-    empty.textContent = "�";
+    empty.textContent = "—";
     wrap.appendChild(empty);
     return;
   }
@@ -535,6 +535,81 @@ function renderResult() {
 
   $("#overlap1").textContent = a.overlaps[0];
   $("#overlap2").textContent = a.overlaps[1];
+
+  // Trigger AI analysis (async, non-blocking)
+  analyzeWithAI();
+}
+
+/* ============================================================
+   AI Analysis — calls /api/analyze backend
+   ============================================================ */
+let analysisCache = null; // cache so re-renders don't refetch
+
+async function analyzeWithAI() {
+  const loadingEl = $("#aiLoading");
+  const contentEl = $("#aiContent");
+  const errorEl   = $("#aiError");
+  const textEl    = $("#aiText");
+
+  // Reset UI states
+  loadingEl.classList.remove("hidden");
+  contentEl.classList.add("hidden");
+  errorEl.classList.add("hidden");
+
+  // If we already have a cached analysis for this exact answer set, use it
+  const fingerprint = JSON.stringify(state.answers);
+  if (analysisCache && analysisCache.fingerprint === fingerprint) {
+    textEl.textContent = analysisCache.analysis;
+    loadingEl.classList.add("hidden");
+    contentEl.classList.remove("hidden");
+    return;
+  }
+
+  // Build payload
+  const { pct, dominant } = computeResult();
+  const payload = {
+    answers: state.answers.map((sel, i) => {
+      const q = QUESTIONS[i];
+      return {
+        circle: q.circle,
+        mode: q.mode,
+        title: q.title,
+        selected: sel.map((letter) => ({
+          letter,
+          text: q.options[LETTERS.indexOf(letter)],
+        })),
+      };
+    }),
+    scores: pct,
+    dominant,
+    archetype: ARCHETYPES[dominant].name,
+  };
+
+  try {
+    const res = await fetch("/api/analyze", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err?.error?.message || `Server returned ${res.status}`);
+    }
+
+    const data = await res.json();
+    if (!data.analysis) throw new Error("Empty analysis from server.");
+
+    analysisCache = { fingerprint, analysis: data.analysis };
+    textEl.textContent = data.analysis;
+    loadingEl.classList.add("hidden");
+    contentEl.classList.remove("hidden");
+  } catch (err) {
+    console.error("[analyze]", err);
+    $("#aiErrorMsg").textContent = err.message || "Something went wrong.";
+    loadingEl.classList.add("hidden");
+    errorEl.classList.remove("hidden");
+  }
 }
 
 /* ============================================================
@@ -552,7 +627,11 @@ document.addEventListener("click", (e) => {
     case "restart":
       state.current = 0;
       state.answers = QUESTIONS.map(() => []);
+      analysisCache = null;
       show("welcome");
+      break;
+    case "retry-analysis":
+      analyzeWithAI();
       break;
     case "share":
       const a = ARCHETYPES[computeResult().dominant];
@@ -585,7 +664,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 /* ============================================================
-   Boot � show splash, then auto-advance to welcome
+   Boot — show splash, then auto-advance to welcome
    ============================================================ */
 window.addEventListener("load", () => {
   setTimeout(() => show("welcome"), 1800);

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ikigai � Find your career sweet spot</title>
+    <title>Ikigai — Find your career sweet spot</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -55,7 +55,7 @@
           <h2 class="welcome-title">Find your<br />career sweet spot.</h2>
           <p class="welcome-desc">
             Answer 20 quick questions about what you love, what you're good at,
-            what the world needs, and what you can be paid for � and discover
+            what the world needs, and what you can be paid for — and discover
             where they all meet.
           </p>
 
@@ -123,7 +123,7 @@
             <span id="circleName">Passion circle</span>
           </div>
 
-          <h2 class="question-title" id="questionTitle">Loading�</h2>
+          <h2 class="question-title" id="questionTitle">Loading…</h2>
           <p class="question-hint" id="questionHint">Select all that apply</p>
 
           <div class="options" id="optionsList"></div>
@@ -152,7 +152,7 @@
             <div class="footer-center">
               <span class="footer-label">Selected</span>
               <div class="selected-chips" id="selectedChips">
-                <span class="chip-empty">�</span>
+                <span class="chip-empty">—</span>
               </div>
             </div>
 
@@ -187,7 +187,7 @@
             <span class="eyebrow">Your ikigai profile</span>
             <h2 class="result-name" id="resultName">Builder</h2>
             <p class="result-blurb" id="resultBlurb">
-              You thrive at turning ideas into tangible things � combining
+              You thrive at turning ideas into tangible things — combining
               creativity, technical skill, and a drive to ship work that
               matters.
             </p>
@@ -279,6 +279,36 @@
           <div class="result-actions">
             <button class="ghost-light" data-action="restart">Take again</button>
             <button class="solid-light" data-action="share">Share result</button>
+          </div>
+        </div>
+
+        <!-- AI Analysis section (Mercury 2 via Inception) -->
+        <div class="ai-section">
+          <div class="ai-loading" id="aiLoading">
+            <div class="ai-spinner">
+              <span></span><span></span><span></span>
+            </div>
+            <p class="ai-loading-text">Reading your answers…</p>
+          </div>
+
+          <div class="ai-content hidden" id="aiContent">
+            <div class="ai-header">
+              <span class="ai-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Personalized analysis
+              </span>
+            </div>
+            <p class="ai-text" id="aiText"></p>
+            <p class="ai-fineprint">Powered by Mercury 2 · Generated from your specific answers</p>
+          </div>
+
+          <div class="ai-error hidden" id="aiError">
+            <p class="ai-error-title">Couldn't generate analysis</p>
+            <p class="ai-error-msg" id="aiErrorMsg">Network error.</p>
+            <button class="ghost-light ai-retry" data-action="retry-analysis">Try again</button>
           </div>
         </div>
       </section>

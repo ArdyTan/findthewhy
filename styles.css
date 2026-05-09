@@ -1,5 +1,5 @@
 /* =============================================================
-   IKIGAI � Personality Test App
+   IKIGAI — Personality Test App
    Mobile-first phone shell, light theme, soft pastel option chips
    ============================================================= */
 
@@ -727,3 +727,159 @@ body {
 .result-avatar[data-tone="skills"]   { background: radial-gradient(120% 100% at 30% 20%, #ffe5e2 0%, #ffd8d6 50%, #a14444 100%); }
 .result-avatar[data-tone="mission"]  { background: radial-gradient(120% 100% at 30% 20%, #d8f0ee 0%, #c8e8e6 50%, #20696a 100%); }
 .result-avatar[data-tone="vocation"] { background: radial-gradient(120% 100% at 30% 20%, #fff3c8 0%, #f5e9b6 50%, #8a6f1a 100%); }
+
+/* =============================================================
+   AI Analysis section — Mercury 2 via Inception
+   ============================================================= */
+.ai-section {
+  margin: 18px 18px 22px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(
+    180deg,
+    rgba(108, 209, 126, 0.06) 0%,
+    rgba(220, 207, 245, 0.08) 100%
+  );
+  border: 1px solid var(--line);
+  overflow: hidden;
+  position: relative;
+}
+
+.ai-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 80% 0%, rgba(108, 209, 126, 0.12), transparent 40%),
+    radial-gradient(circle at 0% 100%, rgba(220, 207, 245, 0.18), transparent 50%);
+  pointer-events: none;
+}
+
+.ai-loading,
+.ai-content,
+.ai-error {
+  position: relative;
+  padding: 22px 20px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ---- Loading state ---- */
+.ai-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  min-height: 130px;
+  justify-content: center;
+}
+
+.ai-spinner {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.ai-spinner span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-2);
+  display: inline-block;
+  animation: aiBounce 1.2s ease-in-out infinite;
+}
+
+.ai-spinner span:nth-child(2) {
+  animation-delay: 0.15s;
+  background: var(--c-mission-ink);
+}
+
+.ai-spinner span:nth-child(3) {
+  animation-delay: 0.3s;
+  background: var(--c-extra-ink);
+}
+
+@keyframes aiBounce {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.ai-loading-text {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+
+/* ---- Content state ---- */
+.ai-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.ai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.ai-badge svg {
+  color: var(--accent-2);
+}
+
+.ai-text {
+  margin: 0 0 14px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  white-space: pre-wrap;
+}
+
+.ai-fineprint {
+  margin: 0;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+/* ---- Error state ---- */
+.ai-error {
+  text-align: center;
+}
+
+.ai-error-title {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.ai-error-msg {
+  margin: 0 0 14px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.ai-retry {
+  font-size: 13px;
+  padding: 8px 16px;
+}
